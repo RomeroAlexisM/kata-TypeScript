@@ -62,6 +62,6 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": [
-    "src/app/**/*" // Con esta línea pude compilar todos los archivos ts dentro de las subcarpetas de core
+    "src/app/**/*", "src/test/gildedRoseTest.ts" // Con esta línea pude compilar todos los archivos ts dentro de las subcarpetas de core
 ]
 }

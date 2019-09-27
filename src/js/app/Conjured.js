@@ -3,20 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Conjured = /** @class */ (function () {
     function Conjured(sellIn, quality) {
         this.MIN_QUALITY = 0;
-        this.ZERO_DAYS = 0;
+        this.TWO_QUALITY_UNITS = 2;
         this.sellIn = sellIn;
         this.quality = quality;
     }
     Conjured.prototype.updateQuality = function () {
-        this.sellIn--;
-        if (this.sellIn > this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
-            this.decreaseQuality(2);
+        if (this.quality > this.MIN_QUALITY) {
+            this.decreaseQuality(this.TWO_QUALITY_UNITS);
         }
-        else {
-            this.sellIn = 0;
-            this.decreaseQuality(2);
-        }
-        return 'Conjured sellIn = ' + this.sellIn + ' quality = ' + this.quality;
+        return this.quality;
     };
     Conjured.prototype.decreaseQuality = function (deratingValue) {
         this.quality = this.quality - deratingValue;

@@ -7,29 +7,30 @@ var BackstagePassest = /** @class */ (function () {
         this.TEN_DAYS = 10;
         this.FIVE_DAYS = 5;
         this.ZERO_DAYS = 0;
+        this.ONE_QUALITY_UNITS = 1;
+        this.TWO_QUALITY_UNITS = 2;
+        this.THREE_QUALITY_UNITS = 3;
         this.sellIn = sellIn;
         this.quality = quality;
     }
     BackstagePassest.prototype.updateQuality = function () {
-        this.sellIn--;
-        if (this.sellIn > this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
+        if (this.sellIn >= this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
             if (this.sellIn <= this.TEN_DAYS) {
                 if (this.sellIn <= this.FIVE_DAYS) {
-                    this.increaseQuality(3);
+                    this.increaseQuality(this.THREE_QUALITY_UNITS);
                 }
                 else {
-                    this.increaseQuality(2);
+                    this.increaseQuality(this.TWO_QUALITY_UNITS);
                 }
             }
             else {
-                this.increaseQuality(1);
+                this.increaseQuality(this.ONE_QUALITY_UNITS);
             }
         }
         else {
-            this.sellIn = 0;
             this.decreaseQuality(this.quality);
         }
-        return 'BackstagePassest sellIn = ' + this.sellIn + ' quality = ' + this.quality;
+        return this.quality;
     };
     BackstagePassest.prototype.increaseQuality = function (incrementValue) {
         if (this.quality < this.MAX_QUALITY) {

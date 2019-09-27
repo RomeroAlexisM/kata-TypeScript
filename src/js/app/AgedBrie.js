@@ -3,20 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AgedBrie = /** @class */ (function () {
     function AgedBrie(sellIn, quality) {
         this.MAX_QUALITY = 50;
-        this.ZERO_DAYS = 0;
+        this.ONE_QUALITY_UNITS = 1;
         this.sellIn = sellIn;
         this.quality = quality;
     }
     AgedBrie.prototype.updateQuality = function () {
-        this.sellIn--;
-        if (this.sellIn > this.ZERO_DAYS) {
-            this.increaseQuality(1);
-        }
-        else {
-            this.sellIn = 0;
-            this.increaseQuality(1);
-        }
-        return 'AgedBrie sellIn = ' + this.sellIn + ' quality = ' + this.quality;
+        this.increaseQuality(this.ONE_QUALITY_UNITS);
+        return this.quality;
     };
     AgedBrie.prototype.increaseQuality = function (incrementValue) {
         if (this.quality < this.MAX_QUALITY) {

@@ -11,29 +11,31 @@ export class BackstagePassest implements Quality, IncreaseQuality, DecreaseQuali
   private TEN_DAYS = 10;
   private FIVE_DAYS = 5;
   private ZERO_DAYS = 0;
+  private ONE_QUALITY_UNITS = 1;
+  private TWO_QUALITY_UNITS = 2;
+  private THREE_QUALITY_UNITS = 3;
+
 
   constructor(sellIn: number, quality: number ){
     this.sellIn = sellIn;
     this.quality = quality;
   }
   updateQuality(){
-    this.sellIn--;
-    if (this.sellIn > this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
+    if (this.sellIn >= this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
       if (this.sellIn <= this.TEN_DAYS) {
         if (this.sellIn <= this.FIVE_DAYS) {
-         this.increaseQuality(3);
+         this.increaseQuality(this.THREE_QUALITY_UNITS);
         }else {
-          this.increaseQuality(2);
+          this.increaseQuality(this.TWO_QUALITY_UNITS);
         }
       }else {
-        this.increaseQuality(1);
+        this.increaseQuality(this.ONE_QUALITY_UNITS);
       }
     }else {
-      this.sellIn = 0;
       this.decreaseQuality(this.quality);
     } 
 
-  return 'BackstagePassest sellIn = ' + this.sellIn + ' quality = ' + this.quality; 
+  return this.quality; 
   }
 
   increaseQuality(incrementValue: number){

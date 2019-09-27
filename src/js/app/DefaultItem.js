@@ -4,23 +4,25 @@ var DefaultItem = /** @class */ (function () {
     function DefaultItem(name, sellIn, quality) {
         this.MIN_QUALITY = 0;
         this.ZERO_DAYS = 0;
+        this.ONE_QUALITY_UNITS = 1;
+        this.TWO_QUALITY_UNITS = 2;
         this.sellIn = sellIn;
         this.quality = quality;
         this.name = name;
     }
     DefaultItem.prototype.updateQuality = function () {
-        this.sellIn--;
         if (this.sellIn > this.ZERO_DAYS && this.quality > this.MIN_QUALITY) {
-            this.decreaseQuality(1);
+            this.decreaseQuality(this.ONE_QUALITY_UNITS);
         }
         else {
-            this.sellIn = 0;
-            this.decreaseQuality(2);
+            this.decreaseQuality(this.TWO_QUALITY_UNITS);
         }
-        return this.name + ' sellIn = ' + this.sellIn + ' quality = ' + this.quality;
+        return this.quality;
     };
     DefaultItem.prototype.decreaseQuality = function (deratingValue) {
-        this.quality = this.quality - deratingValue;
+        if (this.quality > this.MIN_QUALITY) {
+            this.quality = this.quality - deratingValue;
+        }
     };
     return DefaultItem;
 }());
