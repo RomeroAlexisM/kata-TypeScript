@@ -1,3 +1,4 @@
 export interface Quality{
-  updateQuality(): void
+  updateQuality(): void;
+
 }
